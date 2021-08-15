@@ -1,0 +1,48 @@
+<nz-content>
+  <div class="inner-content">
+    <nz-divider nzOrientation="left" [nzText]="buttonId"> </nz-divider>
+    <form nz-form [formGroup]="form">
+      <div formArrayName="item">
+        <div
+          nz-row
+          [nzGutter]="16"
+          *ngFor="let item of itemList.getRawValue(); let i = index"
+        >
+          <ng-container [formGroupName]="i">
+            <div nz-col nzMd="11" nzSm="10" nzXs="10">
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your username!">
+                  <input nz-input placeholder="物品" nzSize="large" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzMd="11" nzSm="10" nzXs="10">
+              <nz-form-item>
+                <nz-form-control nzErrorTip="Please input your username!">
+                  <input nz-input placeholder="價錢" nzSize="large" />
+                </nz-form-control>
+              </nz-form-item>
+            </div>
+            <div nz-col nzMd="2" nzSm="4" nzXs="4">
+              <nz-form-item
+                ><button
+                  nz-button
+                  nzDanger
+                  nzType="primary"
+                  (click)="onRemove(i)"
+                >
+                  X
+                </button>
+              </nz-form-item>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </form>
+  </div>
+</nz-content>
+
+<ng-template #buttonId>
+  平分價錢
+  <button nz-button nzType="primary" (click)="addItem()">增加項目</button>
+</ng-template>
